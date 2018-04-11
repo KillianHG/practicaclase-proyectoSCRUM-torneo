@@ -10,14 +10,16 @@ public class CompetiClases {
         Partidos(dmaj, jornada);
         Clasificacion();
     }
-    public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
-   public static int  numeroEquipos;
-   public static int numeroEquiposGuardado;
-   public static String[] equipos;
-   public static int numeroPartidos;
-   public static String[][] matrizPartidos;
-   public static int[][] clasi;
-   public static int di = 0;
+    //public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
+    public static String PATH = "/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";//path Killian
+    public static File pathEquipos = new File("/home/41011561p/IdeaProjects/LaTornacio/LaTornacio/Equipos");
+    public static int  numeroEquipos;
+    public static int numeroEquiposGuardado;
+    public static String[] equipos;
+    public static int numeroPartidos;
+    public static String[][] matrizPartidos;
+    public static int[][] clasi;
+    public static int di = 0;
     //Algoritmo y automatizar vienen cogidos de la mano.
     //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
     //Para eso, usamos el siguiente algoritmo:
@@ -25,29 +27,31 @@ public class CompetiClases {
 
 
     public static void Jornadas(int[]dmaj, int jornada) {
+
         try {
             Scanner sc = new Scanner(System.in);
-            File directorio = new File(PATH + "jornadas.txt");
+            File directorio = new File(PATH + "/Temporada/jornadas.txt");
+            if (!directorio.exists()) {
+            directorio.mkdirs();
+            directorio.delete();
             directorio.createNewFile();
-            PATH = PATH + "/jornadas.txt";
+            }
 
-            System.out.println("Introduce el numero de equipos");
-            numeroEquipos = sc.nextInt();
-            numeroEquiposGuardado = (int) numeroEquipos;
+            //System.out.println("Introduce el numero de equipos");
+            numeroEquipos = pathEquipos.listFiles().length;
+            numeroEquiposGuardado = numeroEquipos;
             //Depuradora
-            String a = sc.nextLine();
+            //String a = sc.nextLine();
             equipos = new String[numeroEquiposGuardado];
 
 
             //Nombramos los Equipos
-            System.out.println("Introduce el nombre de los equipos");
+            /*System.out.println("Introduce el nombre de los equipos");
             System.out.println("");
-            System.out.println("");
+            System.out.println("");*/
+            File[] equiposFiles = pathEquipos.listFiles();
             for (int i = 0; i < equipos.length; i++) {
-                int ii = i + 1;
-                System.out.println("    EQUIPO " + ii + ":   ");
-                equipos[i] = sc.nextLine();
-                //equipos[i] = (int)(Math.random()*1000);
+                equipos[i]=equiposFiles[i].getName().replace(".txt","");
             }
 
 
@@ -447,17 +451,26 @@ nombres de los equipos*/
 
         //imprimir clasificacion ordenada
         try {
-            PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/Classificacion.txt" ;
-            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH, true));
+            File rutaClasi = new File(PATH + "/Temporada/Clasificacion.txt");
+
+
+            if (!rutaClasi.exists()) {
+                rutaClasi.mkdirs();
+                rutaClasi.delete();
+                rutaClasi.createNewFile();
+            }
+
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(rutaClasi));
+
 
             System.out.print("\nCLASIFICACION DE FUTBOL\n");
-            bw.write("\nCLASIFICACION DE FUTBOL\n");
             for (int x = 1; x <= numeroEquiposGuardado; x++) {
                 int y = x - 1;
                 System.out.print("\n" + x + ". " + equipos[y] + " - " + clasi[y][0] + " victorias - " + clasi[y][1] + " empates - "
                         + clasi[y][2] + " derrotas - " + clasi[y][3] + " puntos");
-                bw.write("\n" + x + ". " + equipos[y] + " - " + clasi[y][0] + " victorias - " + clasi[y][1] + " empates - "
-                        + clasi[y][2] + " derrotas - " + clasi[y][3] + " puntos");
+                bw.write(equipos[y] + " " + clasi[y][0] + " " + clasi[y][1] + " "
+                        + clasi[y][2] + " " + clasi[y][3] + " \n");
 
             }
             bw.close();

@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class EquiposClases {
 
-    public static String ruta ="/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/";
+    //public static String ruta ="/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/";
+    public static String ruta ="/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";//path Killian
 
     // EQUIPOS
     // En esta accion lo que hacemos es primeramente , que te pregunte los equipos que quiere crear ,
@@ -18,8 +19,12 @@ public class EquiposClases {
 
     public static void Equipos() {
         Scanner sc = new Scanner(System.in);
-        File directorio = new File(ruta + "Equipos");
-        directorio.mkdir();
+
+        File directorio = new File(ruta + "/"+ "Equipos");
+        if (!directorio.exists()){
+            directorio.mkdir();
+        }
+
         try{
             int a;
             System.out.println("Cuantos equipos quieres crear?");
@@ -29,10 +34,10 @@ public class EquiposClases {
             for (int i = 0; i < numero ; i++) {
                 System.out.println("Introduce el nombre del equipo");
                 nombreequipo[i] = sc.next();
-                ruta = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Equipos/";
-                File equipo = new File(ruta + nombreequipo[i] + ".txt");
+
+                File equipo = new File(ruta + "/" + "Equipos" + "/" + nombreequipo[i] + ".txt");
                 equipo.createNewFile();
-                String temp = ruta + nombreequipo[i] + ".txt";
+                String temp = ruta + "/" + "Equipos" + "/" + nombreequipo[i] + ".txt";
                 System.out.println("Introduce el numero de personas que forman el equipo");
                 a = sc.nextInt();
 

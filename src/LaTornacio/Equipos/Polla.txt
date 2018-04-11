@@ -1,9 +1,0 @@
-Nombre : sdff Edad : 32 Genero : Otros
-Nombre : dsf Edad : 32 Genero : Masculino
-###############################################################
-El 100% de los integrantes del equipo són mayores de edad 
-El 0% de los integrantes del equipo són menores de edad 
-###############################################################
-El 50% del equipo  són hombres 
-El 0% del equipo  són mujeres 
-El 50% del equipo  són otros 

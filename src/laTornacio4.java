@@ -24,8 +24,8 @@ public class laTornacio4 {
         while (cuerpo==0) {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("                 1: Nuevos equipos");
-            if (di==0) System.out.println("                 2: Partidos de Jornada");
-            else System.out.println("                2: Ver clasificacion");
+            if (di==0) System.out.println("                 2: Crear temporada");
+            else System.out.println("                3: Ver clasificacion");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
