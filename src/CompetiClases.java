@@ -30,7 +30,7 @@ public class CompetiClases {
 
         try {
             Scanner sc = new Scanner(System.in);
-            File directorio = new File(PATH + "/Temporada/jornadas.txt");
+            File directorio = new File(PATH + "/Temporada/Jornadas.txt");
             if (!directorio.exists()) {
             directorio.mkdirs();
             directorio.delete();
@@ -164,7 +164,7 @@ public class CompetiClases {
                             System.out.println("JORNADA  " + dmaj[3] + "  --->   " + matrizPartidos[i][0] + " VS "
                                     + matrizPartidos[i][1] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] );
 
-                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH, true));
+                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
                             bw.write("-----" + "\n");
                             bw.write("JORNADA  " + dmaj[3] + "  --->   " + matrizPartidos[i][0] + " VS "
                                     + matrizPartidos[i][1] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] + "\n");

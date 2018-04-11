@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd375516-81dc-46d6-8cf3-876b54056b57" name="Default" comment="Scrum 5 para empezar">
-      <change beforePath="" afterPath="$PROJECT_DIR$/LaTornacio/Equipos/Po.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/LaTornacio/Equipos/Ql.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/LaTornacio/Equipos/Xv.txt" />
+    <list default="true" id="fd375516-81dc-46d6-8cf3-876b54056b57" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/CompetiClases.class" afterPath="$PROJECT_DIR$/out/production/LaTornacio/CompetiClases.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/EquiposClases.class" afterPath="$PROJECT_DIR$/out/production/LaTornacio/EquiposClases.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/Files.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/LaTornacio/Equipos/Lola.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/LaTornacio/Equipos/Polla.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/LaTornacio/Partidos/Classificacion.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/LaTornacio/Partidos/jornadas.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/Main.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/laTornacio4.class" afterPath="$PROJECT_DIR$/out/production/LaTornacio/laTornacio4.class" />
       <change beforePath="$PROJECT_DIR$/src/CompetiClases.java" afterPath="$PROJECT_DIR$/src/CompetiClases.java" />
-      <change beforePath="$PROJECT_DIR$/src/EquiposClases.java" afterPath="$PROJECT_DIR$/src/EquiposClases.java" />
-      <change beforePath="$PROJECT_DIR$/src/Files.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/LaTornacio/Equipos/Lola.txt" afterPath="$PROJECT_DIR$/LaTornacio/Equipos/Ku.txt" />
-      <change beforePath="$PROJECT_DIR$/src/LaTornacio/Equipos/Polla.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/LaTornacio/Partidos/Classificacion.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/LaTornacio/Partidos/jornadas.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/laTornacio4.java" afterPath="$PROJECT_DIR$/src/laTornacio4.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +28,8 @@
       <file leaf-file-name="EquiposClases.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EquiposClases.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state relative-caret-position="198">
+              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,8 +40,8 @@
       <file leaf-file-name="CompetiClases.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CompetiClases.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="463" column="75" lean-forward="false" selection-start-line="463" selection-start-column="75" selection-end-line="463" selection-end-column="75" />
+            <state relative-caret-position="-586">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,11 +49,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Clasificacion.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Jornadas.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LaTornacio/Temporada/Jornadas.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Clasificacion.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LaTornacio/Temporada/Clasificacion.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -492,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520451414586</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Modificado el tema rutas, en jornada el numero de equipos lo coge segun los equipos que hayan inscritos y el fichero de clasificacion solo imprime los datos NECESARIOS.">
+      <created>1523468082759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523468082759</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -551,7 +548,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Scrum 5 para empezar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scrum 5 para empezar" />
+    <MESSAGE value="Modificado el tema rutas, en jornada el numero de equipos lo coge segun los equipos que hayan inscritos y el fichero de clasificacion solo imprime los datos NECESARIOS." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificado el tema rutas, en jornada el numero de equipos lo coge segun los equipos que hayan inscritos y el fichero de clasificacion solo imprime los datos NECESARIOS." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -736,39 +734,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Xv.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Ql.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LaTornaciojornadas.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Ku.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Po.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -810,11 +776,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EquiposClases.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        <state relative-caret-position="198">
+          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Ku.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Po.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Xv.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Equipos/Ql.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Temporada/Clasificacion.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -828,18 +834,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CompetiClases.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="463" column="75" lean-forward="false" selection-start-line="463" selection-start-column="75" selection-end-line="463" selection-end-column="75" />
+        <state relative-caret-position="-586">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LaTornacio/Temporada/Clasificacion.txt">
+    <entry file="file://$PROJECT_DIR$/LaTornacio/Temporada/Jornadas.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
