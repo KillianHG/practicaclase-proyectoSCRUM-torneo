@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd375516-81dc-46d6-8cf3-876b54056b57" name="Default" comment="Pequeña modificacion en el path de Jornadas.txt">
+    <list default="true" id="fd375516-81dc-46d6-8cf3-876b54056b57" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/CompetiClases.class" afterPath="$PROJECT_DIR$/out/production/LaTornacio/CompetiClases.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/LaTornacio/laTornacio4.class" afterPath="$PROJECT_DIR$/out/production/LaTornacio/laTornacio4.class" />
       <change beforePath="$PROJECT_DIR$/src/CompetiClases.java" afterPath="$PROJECT_DIR$/src/CompetiClases.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -45,8 +43,8 @@
       <file leaf-file-name="CompetiClases.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CompetiClases.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="487" column="31" lean-forward="false" selection-start-line="487" selection-start-column="31" selection-end-line="487" selection-end-column="31" />
+            <state relative-caret-position="226">
+              <caret line="21" column="68" lean-forward="false" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -421,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523474147974</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Rama Killian + creando arraylist de equipos">
+      <created>1524079539295</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1524079539295</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -463,7 +468,8 @@
     <MESSAGE value="Scrum 5 para empezar" />
     <MESSAGE value="Modificado el tema rutas, en jornada el numero de equipos lo coge segun los equipos que hayan inscritos y el fichero de clasificacion solo imprime los datos NECESARIOS." />
     <MESSAGE value="Pequeña modificacion en el path de Jornadas.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pequeña modificacion en el path de Jornadas.txt" />
+    <MESSAGE value="Rama Killian + creando arraylist de equipos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rama Killian + creando arraylist de equipos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -776,8 +782,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CompetiClases.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="487" column="31" lean-forward="false" selection-start-line="487" selection-start-column="31" selection-end-line="487" selection-end-column="31" />
+        <state relative-caret-position="226">
+          <caret line="21" column="68" lean-forward="false" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

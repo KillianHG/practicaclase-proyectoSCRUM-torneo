@@ -19,7 +19,7 @@ public class CompetiClases {
     public static String[][] matrizPartidos;
     public static int[][] clasi;
     public static int di = 0;
-    public static ArrayList<Equipos> aL_Equipos;
+    public static ArrayList<Equipos> aL_Equipos = new ArrayList<>();
     //Algoritmo y automatizar vienen cogidos de la mano.
     //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
     //Para eso, usamos el siguiente algoritmo:
