@@ -1,6 +1,5 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class CompetiClases {
     public static void JornadasClasi() {
@@ -20,6 +19,7 @@ public class CompetiClases {
     public static String[][] matrizPartidos;
     public static int[][] clasi;
     public static int di = 0;
+    public static ArrayList<Equipos> aL_Equipos;
     //Algoritmo y automatizar vienen cogidos de la mano.
     //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
     //Para eso, usamos el siguiente algoritmo:
@@ -187,7 +187,7 @@ public class CompetiClases {
                                     + matrizPartidos[i][0] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2]);
                             CalendarioJornadas(dmaj);
 
-                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH, true));
+                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
                             bw.write("-----" + "\n");
                             bw.write("JORNADA DE VUELTA " + dmaj[3] + "  --->   " + matrizPartidos[i][1] + " VS "
                                     + matrizPartidos[i][0] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] + "\n");
@@ -477,6 +477,23 @@ nombres de los equipos*/
             di = 1;
         }catch (Exception e){
             System.out.println("error" + e);
+        }
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(PATH + "/Temporada/Clasificacion.txt"));
+
+            String linea;
+            while ((linea = br.readLine())!=null) {
+                String [] eq_puntaje = linea.split(" ");
+                aL_Equipos.add(new Equipos(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),Integer.parseInt(eq_puntaje[2]),Integer.parseInt(eq_puntaje[3]),Integer.parseInt(eq_puntaje[4])));
+            }
+
+            for (Equipos equipo: aL_Equipos) {
+                System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
+            }
+
+        } catch (Exception e) {
+
         }
     }
     public static void OrdenarClasificacion() {
