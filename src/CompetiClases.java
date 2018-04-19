@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 public class CompetiClases {
     public static void JornadasClasi() {
@@ -479,6 +480,28 @@ nombres de los equipos*/
             System.out.println("error" + e);
         }
 
+        for (Equipos equipo: aL_Equipos) {
+            System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
+        }
+
+
+
+
+
+    }
+    public static void TesteandoTo() {
+
+        FicheroToObjeto();
+
+        /*aL_Equipos.get(0).setPuntos(99);
+        aL_Equipos.get(1).setDerrotas(-01);
+        aL_Equipos.get(2).setEmpates(77);
+        aL_Equipos.get(3).setNombre("Pt");*/
+
+        ObjetoToFichero();
+        }
+
+    public static void FicheroToObjeto() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH + "/Temporada/Clasificacion.txt"));
 
@@ -487,15 +510,35 @@ nombres de los equipos*/
                 String [] eq_puntaje = linea.split(" ");
                 aL_Equipos.add(new Equipos(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),Integer.parseInt(eq_puntaje[2]),Integer.parseInt(eq_puntaje[3]),Integer.parseInt(eq_puntaje[4])));
             }
+            System.out.println(aL_Equipos.size());
 
-            for (Equipos equipo: aL_Equipos) {
-                System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
+            Collections.sort(aL_Equipos, Equipos.compararPuntos);
+            System.out.println("Mostrem els elements ORDENATS per punts:");
+            for (int i=0; i<aL_Equipos.size(); i++){
+                System.out.println(aL_Equipos.get(i) + " ");
             }
 
+
+            br.close();
         } catch (Exception e) {
 
         }
     }
+
+    public static void ObjetoToFichero() {
+        try {
+            String clasificacion = "";
+            for (Equipos equipo :aL_Equipos) {
+                clasificacion = clasificacion+equipo.getNombre()+" "+equipo.getVictorias()+" "+equipo.getEmpates()+" "+equipo.getDerrotas()+" "+equipo.getPuntos()+"\n";
+            }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + "/Temporada/Clasificacion.txt"));
+            bw.write(clasificacion);
+            bw.close();
+        } catch (Exception e) {
+
+        }
+    }
+
     public static void OrdenarClasificacion() {
         int ne=numeroEquiposGuardado-1;
         for (int i=ne; i>=0; i--){

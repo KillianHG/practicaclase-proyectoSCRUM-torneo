@@ -30,19 +30,21 @@ public class laTornacio4 {
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
-                    EquiposClases.Equipos();
+
                     break;
                 case 2:
-                    if (di==0) {
+                    /*if (di==0) {
                         CompetiClases.JornadasClasi();
                         break;
                     }
 
                     if (di==1){
                         CompetiClases.OrdenarClasificacion();
-                        CompetiClases.ImprimirClasificacion();
+                        CompetiClases.ImprimirClasificacion();*/
+
+                        CompetiClases.TesteandoTo();
                         break;
-                    }
+                    //}
 
 
                 default:

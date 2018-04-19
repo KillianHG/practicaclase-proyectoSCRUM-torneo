@@ -1,200 +1,201 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
-
 
 
 public class EquiposClases {
 
-    //public static String ruta ="/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/";
-    public static String ruta ="/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";//path Killian
+    public static  Scanner sc = new Scanner(System.in);
 
-    // EQUIPOS
-    // En esta accion lo que hacemos es primeramente , que te pregunte los equipos que quiere crear ,
-    // luego los almacena en un array de strings los nombres de los equipos (el numero de este dependera
-    // de el valor que se ha introducido previamente). Finalmente preguntara el numero de personas que
-    // forman el equipo , este se almacenara en una variable que dira el numero de veces que se ejecutara
-    // la accion 'introdatos'
+    public static void main(String[] args) {
 
-    public static void Equipos() {
-        Scanner sc = new Scanner(System.in);
+        EquiposClases();
 
-        File directorio = new File(ruta + "/"+ "Equipos");
-        if (!directorio.exists()){
-            directorio.mkdir();
-        }
-
-        try{
-            int a;
-            System.out.println("Cuantos equipos quieres crear?");
-            int numero = sc.nextInt();
-            String [] nombreequipo = new String[numero];
-
-            for (int i = 0; i < numero ; i++) {
-                System.out.println("Introduce el nombre del equipo");
-                nombreequipo[i] = sc.next();
-
-                File equipo = new File(ruta + "/" + "Equipos" + "/" + nombreequipo[i] + ".txt");
-                equipo.createNewFile();
-                String temp = ruta + "/" + "Equipos" + "/" + nombreequipo[i] + ".txt";
-                System.out.println("Introduce el numero de personas que forman el equipo");
-                a = sc.nextInt();
-
-                introdatos(a,temp);
-
-            }
-        }
-        catch (Exception e) {
-            System.out.println("Error");
-        }
     }
 
-    //INTRO_DATOS
-    // Como su nombre indica , esta accion nos permite introduccir los datos de cada uno de los jugadores
-    // este incluye el nombre , edad y genero. Una vez recolectados todos los datos , llama a "edad" y
-    // "genero".
+    public static void EquiposClases() {
 
-    public static void introdatos(int a,String temp){
-        try{
-            Scanner sc = new Scanner(System.in);
-            int mayor, menor, masculino, femenino, otro, resultath, resultatm, resultato;
-            mayor = 0;
-            menor = 0;
-            masculino = 0;
-            femenino = 0;
-            otro = 0;
-            resultath = 0;
-            resultatm = 0;
-            resultato = 0;
-            int npersonas[] = new int[a];
-            int edad[] = new int[a];
-            String nombres[] = new String[a];
-            int genero[] = new int[a];
+        ArrayList<ObjEquipos> objEquipos = new ArrayList<ObjEquipos>();
 
 
-            for (int b = 0; b < npersonas.length; b++) {
+        int limit = 0;
+        while (limit == 0){
+
+            System.out.println("Que vols fer?");
+            System.out.println("1.Crear equip");
+            System.out.println("2.Imprimir todos los equipos");
+            System.out.println("3.Mostrar datos de equipo");
+            System.out.println("4.Sortir");
+
+            int opcio = sc.nextInt();
+            switch (opcio) {
+
+                case 1 :
+                    ArrayList<Jugadores> jugadores2 = new ArrayList<Jugadores>();
+
+                    int limitante = 0;
+                    String nombreequipo = "jabon";
+                    while (limitante == 0) {
+                        int bucle = 0;
+                        System.out.println("Introduce el nombre del equipo");
+                        nombreequipo = sc.next();
+
+                        for (int i = 0; i < objEquipos.size() ; i++) {
+
+                            if (objEquipos.get(i).getNomEquip().equalsIgnoreCase(nombreequipo)){
+                                System.out.println("Este nombre esta repetido");
+                                bucle = 1;
+                            }
+                        }
+                        if (bucle == 0){
+                            limitante = 1;
+                        }
+
+                    }
+
+                    System.out.println("Equipo creado correctamente");
+                    int limit2 = 0;
+                    int jugadoresminimos = 2;
+                    int jugadoresmaximos = 4;
+                    int jugadoresactuales = 0;
+                    while (limit2 == 0){
 
 
-                System.out.println("Introduce el nombre");
-                nombres[b] = sc.next();
+                        System.out.println("Creacion jugadores :");
+                        System.out.println("1.Crear Jugador");
+                        System.out.println("2.Salir");
 
 
-                System.out.println("Introduce la edad del sujeto");
-                edad[b] = sc.nextInt();
+                        int opcio2 = sc.nextInt();
 
 
-                System.out.println("Selecciona el genero");
-                System.out.println("1.Masculino");
-                System.out.println("2.Femenino");
-                System.out.println("3.Otro");
-                genero[b] = sc.nextInt();
+                        switch (opcio2) {
 
-                BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
+                            case 1:
 
-                if (genero[b] == 1){
-                    String hombres = "Masculino";
-                    bw.write( "Nombre : " + nombres[b] + " Edad : " + edad[b] + " Genero : " + hombres + "\n");
-                    bw.close();
-                }
-                else if (genero[b] == 2){
-                    String mujeres = "Femenino";
-                    bw.write("Nombre : " + nombres[b] + " Edad : " + edad[b] + " Genero : " + mujeres + "\n");
-                    bw.close();
-                }
-                else if (genero[b] == 3){
-                    String otros = "Otros";
-                    bw.write("Nombre : " + nombres[b] + " Edad : " + edad[b] + " Genero : " + otros + "\n");
-                    bw.close();
-                }
+                                System.out.println("Introduce el nombre del jugador");
+                                String nombrejugador = sc.next();
+                                System.out.println("Introduce la edad del jugador");
+                                int edad = sc.nextInt();
+                                String genero = "m";
+                                int verdad = 0;
+                                while (verdad == 0) {
+                                    System.out.println("Introduce el genero del jugador");
+                                    genero = sc.next();
+                                    if (genero.equalsIgnoreCase("hombre") || genero.equalsIgnoreCase("mujer")
+                                            || genero.equalsIgnoreCase("otro")){
+                                        verdad = 1;
+                                    }
+                                    System.out.println("Genero erroneo , vuelve a introducir");
+
+                                }
+
+                                jugadores2.add(new Jugadores(nombrejugador,edad,genero));
+
+                                jugadoresactuales = jugadoresactuales+1;
+
+                                break;
+
+                            case 2:
+
+                                if (jugadoresactuales >= jugadoresminimos){
+                                    if (jugadoresactuales <= jugadoresmaximos){
+
+                                        objEquipos.add(new ObjEquipos(nombreequipo,jugadores2));
+                                        limit2 = 1;
+                                    }
+                                }
+                                else {
+                                    System.out.println("No cumples los requisitos minimos/maximos");
+                                }
+
+
+                                break;
+
+                        }
+                    }
+
+                    break;
+
+                case 4 :
+
+                    limit = 1;
+
+                    break;
+
+                case 2 :
+
+                    for (int i = 0; i < objEquipos.size(); i++) {
+
+                        System.out.println(objEquipos.get(i).toString());
+                    }
+                    break;
+
+                case 3:
+
+                    System.out.println("De que equipo quieres conocer los datos?");
+                    String equip = sc.next();
+
+                    for (int i = 0; i < objEquipos.size(); i++) {
+
+                        if (equip.equalsIgnoreCase(objEquipos.get(i).getNomEquip())) {
+
+                            int hombres = 0;
+                            int mujeres = 0;
+                            int otros = 0;
+                            int total = 0;
+
+                            for (int j = 0; j < objEquipos.get(i).getJugadores().size(); j++) {
+
+                                if  (objEquipos.get(i).getJugadores().get(j).genero.equalsIgnoreCase("hombre")){
+                                    hombres++;
+                                }
+                                else if  (objEquipos.get(i).getJugadores().get(j).genero.equalsIgnoreCase("mujer")){
+                                    mujeres++;
+                                }
+                                else {
+                                    otros++;
+                                }
+                                total++;
+                            }
+
+                            System.out.println(" Hombres : " + (hombres*100)/total + "%");
+                            System.out.println(" Mujeres : " + (mujeres*100)/total + "%");
+                            System.out.println(" Otros : " + (otros*100)/total + "%");
+
+                            int mayor = 0;
+                            int menor = 0;
+                            int tot = 0;
+
+                            for (int j = 0; j < objEquipos.get(i).getJugadores().size(); j++) {
+
+                                if (objEquipos.get(i).getJugadores().get(j).edad >= 18){
+                                    mayor++;
+                                }
+                                else {
+                                    menor++;
+                                }
+                                tot++;
+                            }
+
+                            System.out.println(" Mayores de edad : " + (mayor*100)/tot  + "%");
+                            System.out.println(" Menores de edad : " + (menor*100)/tot  + "%");
+                            System.out.println("\n");
+
+                        }
+
+                    }
+
+
+                    break;
 
 
             }
-
-            edad(edad,mayor,menor,a,temp);
-
-            genero(genero,masculino,femenino,otro,resultath,resultatm,resultato,a,temp);
         }
-        catch (Exception e) {
-            System.out.println("Error");
-        }
-    }
-
-    // EDAD
-    // La accion edad lo que hace es mirar mediante los datos insertados en "INTRO_DATOS" quales són
-    // mayores de edad y menores . Luego imprime los resultados.
-
-    public static void edad (int []edad,int mayor ,int menor, int a,String temp ){
-
-        try{
-
-            for (int d = 0; d < edad.length; d++) {
-
-                if (edad[d] >= 18) {
-                    mayor = mayor + 1;
-                }
-                if (edad[d] < 18) {
-                    menor = menor + 1;
-                }
-            }
-
-            mayor = (mayor * 100) / a;
-            System.out.println("El " + mayor + "% de los integrantes del equipo són mayores de edad \n");
-            menor = (menor * 100) / a;
-            System.out.println("El " + menor + "% de los integrantes del equipo són menores de edad \n");
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
-            bw.write("###############################################################" + "\n");
-            bw.write("El " + mayor + "% de los integrantes del equipo són mayores de edad \n");
-            bw.write("El " + menor + "% de los integrantes del equipo són menores de edad \n");
-            bw.write("###############################################################" + "\n");
-            bw.close();
-
-        }
-        catch (Exception e) {
-            System.out.println("Error");
-        }
-    }
-
-    // GENERO
-    // Esta accion hace un uso similar a la anterior (EDAD) , de manera que distribuye las personas
-    // dependiendo del genero de estos. Una vez imprimira los resultados dependiendo de si se identifican
-    // gon el genero masculino , femenino o otro.
-
-    public static void genero (int []genero, int masculino, int femenino, int otro, int resultath, int resultatm, int resultato, int a,String temp){
-
-        try{
 
 
-            for (int e = 0; e < genero.length; e++) {
-
-                if (genero[e] == 1) {
-                    masculino = masculino + 1;
-                }
-                if (genero[e] == 2) {
-                    femenino = femenino + 1;
-                }
-                if (genero[e] == 3) {
-                    otro = otro + 1;
-                }
-            }
-            resultath = (masculino * 100) / a;
-            resultatm = (femenino * 100) / a;
-            resultato = (otro * 100) / a;
-
-            System.out.println("El " + resultath + "% del equipo  són hombres \n");
-            System.out.println("El " + resultatm + "% del equipo  són mujeres \n");
-            System.out.println("El " + resultato + "% del equipo  són otros \n");
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
-            bw.write("El " + resultath + "% del equipo  són hombres \n");
-            bw.write("El " + resultatm + "% del equipo  són mujeres \n");
-            bw.write("El " + resultato + "% del equipo  són otros \n");
-            bw.close();
-        }
-        catch (Exception e) {
-            System.out.println("Error");
-        }
 
     }
 
