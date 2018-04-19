@@ -30,7 +30,7 @@ public class laTornacio4 {
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
-                    EquiposClases.Equipos();
+                    EquiposClases.EquiposClases();
                     break;
                 case 2:
                     if (di==0) {

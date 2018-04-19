@@ -9,6 +9,8 @@ public class EquiposClases {
 
     public static  Scanner sc = new Scanner(System.in);
 
+    public static String ruta ="/home/21751779n/Documents/PruebasEquipos";//path Killian
+
     public static void main(String[] args) {
 
         EquiposClases();
@@ -19,6 +21,10 @@ public class EquiposClases {
 
         ArrayList<ObjEquipos> objEquipos = new ArrayList<ObjEquipos>();
 
+        File directorio = new File(ruta + "/"+ "Equipos");
+        if (!directorio.exists()){
+            directorio.mkdir();
+        }
 
         int limit = 0;
         while (limit == 0){
@@ -54,12 +60,31 @@ public class EquiposClases {
                         }
 
                     }
+                    String temp = ruta + "/" + "Equipos" + "/" + nombreequipo + ".txt";
+                    try{
+                        File equipo = new File(ruta + "/" + "Equipos" + "/" + nombreequipo + ".txt");
+                        equipo.createNewFile();
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
+                        bw.write("0 0 0 0" + "\n");
+                        bw.close();
+                    }
+                    catch (Exception e) {
+                    System.out.println("Error 1");
+                    }
+
 
                     System.out.println("Equipo creado correctamente");
                     int limit2 = 0;
                     int jugadoresminimos = 2;
                     int jugadoresmaximos = 4;
                     int jugadoresactuales = 0;
+                    try{
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
+                        bw.write("Jugadores");
+                    }
+                    catch (Exception e) {
+                    System.out.println("Error");
+                    }
                     while (limit2 == 0){
 
 
@@ -88,10 +113,18 @@ public class EquiposClases {
                                             || genero.equalsIgnoreCase("otro")){
                                         verdad = 1;
                                     }
-                                    System.out.println("Genero erroneo , vuelve a introducir");
-
+                                    else {
+                                        System.out.println("Genero erroneo , vuelve a introducir");
+                                    }
                                 }
-
+                                try{
+                                    BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
+                                    bw.write(nombrejugador + " " + edad + " " + genero + "\n");
+                                    bw.close();
+                                }
+                                catch (Exception e) {
+                                System.out.println("Error");
+                                }
                                 jugadores2.add(new Jugadores(nombrejugador,edad,genero));
 
                                 jugadoresactuales = jugadoresactuales+1;
