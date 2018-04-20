@@ -20,7 +20,9 @@ public class CompetiClases {
     public static String[][] matrizPartidos;
     public static int[][] clasi;
     public static int di = 0;
-    public static ArrayList<Equipos> aL_Equipos = new ArrayList<>();
+    public static ArrayList<Equipos> aL_Equiposs = new ArrayList<>();
+    public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<>();
+
     //Algoritmo y automatizar vienen cogidos de la mano.
     //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
     //Para eso, usamos el siguiente algoritmo:
@@ -480,7 +482,7 @@ nombres de los equipos*/
             System.out.println("error" + e);
         }
 
-        for (Equipos equipo: aL_Equipos) {
+        for (Equipos equipo: aL_Equiposs) {
             System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
         }
 
@@ -508,27 +510,52 @@ nombres de los equipos*/
             String linea;
             while ((linea = br.readLine())!=null) {
                 String [] eq_puntaje = linea.split(" ");
-                aL_Equipos.add(new Equipos(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),Integer.parseInt(eq_puntaje[2]),Integer.parseInt(eq_puntaje[3]),Integer.parseInt(eq_puntaje[4])));
+                aL_Equiposs.add(new Equipos(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),Integer.parseInt(eq_puntaje[2]),Integer.parseInt(eq_puntaje[3]),Integer.parseInt(eq_puntaje[4])));
             }
-            System.out.println(aL_Equipos.size());
-
-            Collections.sort(aL_Equipos, Equipos.compararPuntos);
-            System.out.println("Mostrem els elements ORDENATS per punts:");
-            for (int i=0; i<aL_Equipos.size(); i++){
-                System.out.println(aL_Equipos.get(i) + " ");
-            }
-
-
+            OrdenarEquipos();
             br.close();
         } catch (Exception e) {
 
         }
     }
 
+    public static void CargarEquipos() {
+        File equipos = new File(PATH+"/Equipos");
+        for (File equipo:equipos.listFiles()) {
+
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(equipo));
+                String nombre = equipo.getName().replace(".txt","");
+                String linea = br.readLine();
+
+                ArrayList <Jugadores> aL_Jugadores = new ArrayList<>();
+
+                while ((linea = br.readLine())!=null) {
+                    String [] eq_puntaje = linea.split(" ");
+                    aL_Jugadores.add(new Jugadores(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),(eq_puntaje[2])));
+                }
+
+                aL_Equipos.add(new ObjEquipos(nombre,aL_Jugadores));
+                br.close();
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
+
+    public static void OrdenarEquipos() {
+        Collections.sort(aL_Equiposs, Equipos.compararPuntos);
+        System.out.println("Mostrem els elements ORDENATS per punts:");
+        for (int i=0; i<aL_Equipos.size(); i++){
+            System.out.println(aL_Equipos.get(i) + " ");
+        }
+    }
+
     public static void ObjetoToFichero() {
         try {
             String clasificacion = "";
-            for (Equipos equipo :aL_Equipos) {
+            for (Equipos equipo :aL_Equiposs) {
                 clasificacion = clasificacion+equipo.getNombre()+" "+equipo.getVictorias()+" "+equipo.getEmpates()+" "+equipo.getDerrotas()+" "+equipo.getPuntos()+"\n";
             }
             BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + "/Temporada/Clasificacion.txt"));

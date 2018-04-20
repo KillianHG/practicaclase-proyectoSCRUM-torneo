@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 
 public class ObjEquipos {
 
@@ -80,5 +82,17 @@ public class ObjEquipos {
         this.jugadores = jugadores;
 
     }
+
+    public static Comparator<Equipos> compararPuntos = new Comparator<Equipos>() {
+        public int compare(Equipos a1, Equipos a2) {
+            int alumneNom1 = a1.getPuntos();
+            int alumneNom2 = a2.getPuntos();
+
+            //ordre ascendent
+            if (alumneNom2>=alumneNom1) return 1;
+            else return -1;
+            //ordre descendent
+            //return alumneNom2.compareTo(alumneNom1);
+        }};
 
 }
