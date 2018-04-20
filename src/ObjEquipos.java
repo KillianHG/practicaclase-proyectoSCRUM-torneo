@@ -84,12 +84,12 @@ public class ObjEquipos {
     }
 
     public static Comparator<Equipos> compararPuntos = new Comparator<Equipos>() {
-        public int compare(Equipos a1, Equipos a2) {
-            int alumneNom1 = a1.getPuntos();
-            int alumneNom2 = a2.getPuntos();
+        public int compare(Equipos e1, Equipos e2) {
+            int equipo1 = e1.getPuntos();
+            int equipo2 = e2.getPuntos();
 
             //ordre ascendent
-            if (alumneNom2>=alumneNom1) return 1;
+            if (equipo2>=equipo1) return 1;
             else return -1;
             //ordre descendent
             //return alumneNom2.compareTo(alumneNom1);

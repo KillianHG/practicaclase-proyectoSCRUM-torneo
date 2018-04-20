@@ -21,7 +21,7 @@ public class CompetiClases {
     public static int[][] clasi;
     public static int di = 0;
     public static ArrayList<Equipos> aL_Equiposs = new ArrayList<>();
-    public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<>();
+    public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
 
     //Algoritmo y automatizar vienen cogidos de la mano.
     //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
@@ -521,32 +521,47 @@ nombres de los equipos*/
 
     public static void CargarEquipos() {
         File equipos = new File(PATH+"/Equipos");
+        int index = 0;
         for (File equipo:equipos.listFiles()) {
-
             try {
                 BufferedReader br = new BufferedReader(new FileReader(equipo));
                 String nombre = equipo.getName().replace(".txt","");
                 String linea = br.readLine();
+                String [] eq_puntaje = linea.split(" ");
 
                 ArrayList <Jugadores> aL_Jugadores = new ArrayList<>();
 
+
                 while ((linea = br.readLine())!=null) {
-                    String [] eq_puntaje = linea.split(" ");
-                    aL_Jugadores.add(new Jugadores(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),(eq_puntaje[2])));
+                    String [] jugador_info = linea.split(" ");
+                    aL_Jugadores.add(new Jugadores(jugador_info[0],Integer.parseInt(jugador_info[1]),(jugador_info[2])));
                 }
 
-                aL_Equipos.add(new ObjEquipos(nombre,aL_Jugadores));
                 br.close();
+
+                aL_Equipos.add(new ObjEquipos(nombre,aL_Jugadores));
+
+                aL_Equipos.get(index).setVictorias(Integer.parseInt(eq_puntaje[0]));
+                aL_Equipos.get(index).setEmpates(Integer.parseInt(eq_puntaje[1]));
+                aL_Equipos.get(index).setDerrotas(Integer.parseInt(eq_puntaje[2]));
+                aL_Equipos.get(index).setPuntos(Integer.parseInt(eq_puntaje[3]));
+
+                index++;
+
+                System.out.println("Equipo cargado correctamente");
             } catch (Exception e) {
-
+                System.out.println("No se han podido cargar el equipo correctamente");
             }
-
         }
+
+        OrdenarEquipos();
+
+
     }
 
     public static void OrdenarEquipos() {
-        Collections.sort(aL_Equiposs, Equipos.compararPuntos);
-        System.out.println("Mostrem els elements ORDENATS per punts:");
+        //Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
+        System.out.println("Mostrem els elements ORDENATS:");
         for (int i=0; i<aL_Equipos.size(); i++){
             System.out.println(aL_Equipos.get(i) + " ");
         }

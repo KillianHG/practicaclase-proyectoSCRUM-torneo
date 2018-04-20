@@ -42,7 +42,7 @@ public class laTornacio4 {
                         CompetiClases.OrdenarClasificacion();
                         CompetiClases.ImprimirClasificacion();*/
 
-                        CompetiClases.TesteandoTo();
+                        CompetiClases.CargarEquipos();
                         break;
                     //}
 
