@@ -20,7 +20,6 @@ public class CompetiClases {
     public static String[][] matrizPartidos;
     public static int[][] clasi;
     public static int di = 0;
-    public static ArrayList<Equipos> aL_Equiposs = new ArrayList<>();
     public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
 
     //Algoritmo y automatizar vienen cogidos de la mano.
@@ -482,28 +481,16 @@ nombres de los equipos*/
             System.out.println("error" + e);
         }
 
-        for (Equipos equipo: aL_Equiposs) {
+        /*for (Equipos equipo: aL_Equiposs) {
             System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
-        }
+        }*/
 
 
 
 
 
     }
-    public static void TesteandoTo() {
-
-        FicheroToObjeto();
-
-        /*aL_Equipos.get(0).setPuntos(99);
-        aL_Equipos.get(1).setDerrotas(-01);
-        aL_Equipos.get(2).setEmpates(77);
-        aL_Equipos.get(3).setNombre("Pt");*/
-
-        ObjetoToFichero();
-        }
-
-    public static void FicheroToObjeto() {
+    /*public static void FicheroToObjeto() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH + "/Temporada/Clasificacion.txt"));
 
@@ -517,7 +504,7 @@ nombres de los equipos*/
         } catch (Exception e) {
 
         }
-    }
+    }*/
 
     public static void CargarEquipos() {
         File equipos = new File(PATH+"/Equipos");
@@ -560,14 +547,14 @@ nombres de los equipos*/
     }
 
     public static void OrdenarEquipos() {
-        //Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
+        Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
         System.out.println("Mostrem els elements ORDENATS:");
         for (int i=0; i<aL_Equipos.size(); i++){
             System.out.println(aL_Equipos.get(i) + " ");
         }
     }
 
-    public static void ObjetoToFichero() {
+    /*public static void ObjetoToFichero() {
         try {
             String clasificacion = "";
             for (Equipos equipo :aL_Equiposs) {
@@ -579,7 +566,7 @@ nombres de los equipos*/
         } catch (Exception e) {
 
         }
-    }
+    }*/
 
     public static void OrdenarClasificacion() {
         int ne=numeroEquiposGuardado-1;

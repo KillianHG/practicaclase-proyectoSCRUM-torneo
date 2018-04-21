@@ -83,8 +83,8 @@ public class ObjEquipos {
 
     }
 
-    public static Comparator<Equipos> compararPuntos = new Comparator<Equipos>() {
-        public int compare(Equipos e1, Equipos e2) {
+    public static Comparator<ObjEquipos> compararPuntos = new Comparator<ObjEquipos>() {
+        public int compare(ObjEquipos e1, ObjEquipos e2) {
             int equipo1 = e1.getPuntos();
             int equipo2 = e2.getPuntos();
 
