@@ -26,6 +26,7 @@ public class laTornacio4 {
             System.out.println("                 1: Nuevos equipos");
             System.out.println("                 2: Crear temporada");
             System.out.println("                3: Ver clasificacion");
+            System.out.println("                 4: Cargar equipos");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
@@ -50,7 +51,9 @@ public class laTornacio4 {
                 case 3:
                     CompetiClases.ImprimirClasificacion();
                     break;
-
+                case 4:
+                    CompetiClases.CargarEquipos();
+                    break;
                 default:
                     System.out.println("ERROR");
 

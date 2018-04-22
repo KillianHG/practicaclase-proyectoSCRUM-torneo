@@ -33,7 +33,7 @@ public class EquiposClases {
             System.out.println("1.Crear equip");
             System.out.println("2.Imprimir todos los equipos");
             System.out.println("3.Mostrar datos de equipo");
-            System.out.println("4.Sortir");
+            System.out.println("4.Salir");
 
             int opcio = sc.nextInt();
             switch (opcio) {
