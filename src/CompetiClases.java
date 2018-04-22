@@ -8,16 +8,17 @@ public class CompetiClases {
         int jornada = 1;
         Jornadas(dmaj, jornada);
         Partidos(dmaj, jornada);
-        Clasificacion();
     }
     //public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
     public static String PATH = "C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";//path Killian
-    public static File pathEquipos = new File("/home/41011561p/IdeaProjects/LaTornacio/LaTornacio/Equipos");
+    public static File pathEquipos = new File("C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio\\Equipos");
     public static int  numeroEquipos;
     public static int numeroEquiposGuardado;
     public static String[] equipos;
     public static int numeroPartidos;
     public static String[][] matrizPartidos;
+    public static int [][] resultadosnum;
+    public static String [] equipos1;
     public static int[][] clasi;
     public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
 
@@ -39,7 +40,7 @@ public class CompetiClases {
             }
 
             //System.out.println("Introduce el numero de equipos");
-            numeroEquipos = pathEquipos.listFiles().length;
+            numeroEquipos = aL_Equipos.size();
             numeroEquiposGuardado = numeroEquipos;
             //Depuradora
             //String a = sc.nextLine();
@@ -57,11 +58,10 @@ public class CompetiClases {
 
 
             //Generador de total de partidos sin repetir (vuelta x 2)
-            numeroPartidos = (numeroEquipos / 2) * (numeroEquipos - 1);
-
+            numeroPartidos = (aL_Equipos.size() / 2) * (aL_Equipos.size() - 1);
 
             //Matriz de Equipos, Partidos y Puntos.
-            int totalPartidos = (int) numeroPartidos;
+            int totalPartidos = numeroPartidos;
             matrizPartidos = new String[totalPartidos][2];
 
 
@@ -72,8 +72,8 @@ public class CompetiClases {
             //Generador Partidos 2.0
             for (int i = 0; i < numeroPartidos; i++) {
 
-                matrizPartidos[i][0] = equipos[x];
-                matrizPartidos[i][1] = equipos[y];
+                matrizPartidos[i][0] = aL_Equipos.get(1).getNomEquip();
+                matrizPartidos[i][1] = aL_Equipos.get(1).getNomEquip();
 
                 x++;
                 y++;
@@ -84,60 +84,12 @@ public class CompetiClases {
                 }
             }
 
-            //Fechas
-            jornada = 1;
-            int dia = 0;
-            int mes = 0;
-            int año = 2017;
-
-
-            System.out.println("¿Quieres usar fechas aleatorias?");
-            boolean fechasAleatorias = true;
-            String fechas;
-            int validarFecha = 0;
             int validarOpcion = 0;
-            //String c = sc.nextLine();
-
-            while (validarOpcion == 0) {
-                fechas = sc.nextLine();
-                if (fechas.toLowerCase().equals("si")) {
-                    validarOpcion++;
-                    while (validarFecha == 0) {
-                        //Randomizador de fechas
-                        dia = (int) (Math.random() * 30);
-                        mes = (int) (Math.random() * 12);
-                        año = (int) (Math.random() * 100) + 1917;
-                        validarFecha = FechaInicioJornadas(dia, mes, validarFecha, fechasAleatorias);
-                    }
-
-                } else if (fechas.toLowerCase().equals("no")) {
-                    fechasAleatorias = false;
-                    validarOpcion++;
-                    System.out.println("introduce la fecha de inicio  dd / mm / 2017");
-                    // Validamos la fecha
-
-                    while (validarFecha == 0) {
-                        dia = sc.nextInt();
-                        mes = sc.nextInt();
-                        FechaInicioJornadas(dia, mes, validarFecha, fechasAleatorias);
-                        validarFecha = FechaInicioJornadas(dia, mes, validarFecha, fechasAleatorias);
-                        String w = sc.nextLine();
-                    }
-                } else {
-                    System.out.println("No te hemos entendido");
-                    System.out.println("");
-                    System.out.println("¿Quieres usar una fecha aleatoria?");
-                }
-            }
-
-            validarOpcion = 0;
-
-
-            System.out.println("¿Quieres simular partidos de vuelta?   Si / No");
 
             String vuelta = "asd";
 
             while (validarOpcion == 0) {
+                System.out.println("¿Quieres simular partidos de vuelta?   Si / No");
                 vuelta = sc.nextLine();
                 if (vuelta.toLowerCase().equals("si")) {
                     validarOpcion++;
@@ -145,108 +97,46 @@ public class CompetiClases {
                     validarOpcion++;
                 } else {
                     System.out.println("No te hemos entendido.");
-                    System.out.println("¿Quieres simular partidos de vuelta?   Si / No");
-
                 }
             }
-            dmaj[0] = dia;
-            dmaj[1] = mes;
-            dmaj[2] = año;
-            dmaj[3] = jornada;
+            try {
+                //Mostramos el calendario por jornadas
+                for (int i = 0; i < numeroPartidos; i++) {
+                    int j = i+1;
+                    System.out.println("-----");
+                    System.out.println("JORNADA  " + j+ "  --->   " + matrizPartidos[i][0] + " VS "
+                            + matrizPartidos[i][1]);
 
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Temporada\\Jornadas.txt", true));
+                    bw.write("-----" + "\n");
+                    bw.write("JORNADA  " + j +"  --->   " + matrizPartidos[i][0] + " VS "
+                            + matrizPartidos[i][1] +"\n");
+                    bw.close();
+                }
+                if (vuelta.toLowerCase()=="si") {
+                    System.out.println("");
+                    System.out.println("      ------      ");
+                    System.out.println("Partidos de vuelta");
+                    System.out.println("      ------      ");
+                    System.out.println("");
 
-            switch (vuelta.toLowerCase()) {
-
-                case "si":
-                    try {
-                        //Mostramos el calendario por jornadas
-                        for (int i = 0; i < numeroPartidos; i++) {
-                            System.out.println("-----");
-                            System.out.println("JORNADA  " + dmaj[3] + "  --->   " + matrizPartidos[i][0] + " VS "
-                                    + matrizPartidos[i][1] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] );
-
-                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
-                            bw.write("-----" + "\n");
-                            bw.write("JORNADA  " + dmaj[3] + "  --->   " + matrizPartidos[i][0] + " VS "
-                                    + matrizPartidos[i][1] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] + "\n");
-                            bw.close();
-
-                            CalendarioJornadas(dmaj);
-
-                        }
-                        dmaj[0] = dmaj[0] + 7;
-                        dmaj[3] = 1;
-                        System.out.println("");
-                        System.out.println("      ------      ");
-                        System.out.println("Partidos de vuelta");
-                        System.out.println("      ------      ");
-                        System.out.println("");
-
-                        for (int i = 0; i < numeroPartidos; i++) {
-                            System.out.println("-----");
-                            System.out.println("JORNADA DE VUELTA " + dmaj[3] + "  --->   " + matrizPartidos[i][1] + " VS "
-                                    + matrizPartidos[i][0] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2]);
-                            CalendarioJornadas(dmaj);
-
-                            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
-                            bw.write("-----" + "\n");
-                            bw.write("JORNADA DE VUELTA " + dmaj[3] + "  --->   " + matrizPartidos[i][1] + " VS "
-                                    + matrizPartidos[i][0] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2] + "\n");
-                            bw.close();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("error" + e);
-                    }
-
-                    break;
-                case "no":
-                    //Mostramos el calendario por jornadas
-                    jornada = 1;
                     for (int i = 0; i < numeroPartidos; i++) {
+                        int j=numeroPartidos+i;
                         System.out.println("-----");
-                        System.out.println("JORNADA  " + jornada + "  --->   " + matrizPartidos[i][0] + " VS "
-                                + matrizPartidos[i][1] + "    " + dia + " / " + mes + " / " + año);
+                        System.out.println("JORNADA DE VUELTA " + j + "  --->   " + matrizPartidos[i][1] + " VS "
+                                + matrizPartidos[i][0]);
 
-                        dia = dia + (int) (Math.random() * 3) + 1;
-                        jornada++;
-
-                        //Calendario
-                        if (dia == 31) {
-                            dia = 1;
-                            mes = mes + 1;
-                        }
-                        if (dia == 32) {
-                            dia = 2;
-                            mes = mes + 1;
-                        }
-                        if (dia >= 33) {
-                            dia = 3;
-                            mes = mes + 1;
-                        }
-                        if (mes == 13) {
-                            año = año + 1;
-                            mes = 1;
-                        }
-                        if (dia == 6 || dia == 13 || dia == 20 || dia == 27) {
-                            dia = dia + 2;
-                        }
-                        if (dia == 7 || dia == 14 || dia == 21 || dia == 28) {
-                            dia++;
-                        }
-                        if (dia == 29 && mes == 2) {
-                            dia = dia + 2;
-                        }
-                        if (dia == 30 && mes == 2) {
-                            dia++;
-                        }
-                        if (dia == 25 && mes == 12) {
-                            dia++;
-                        }
-                        if (dia == 1 && mes == 1) {
-                            dia++;
-                        }
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
+                        bw.write("-----" + "\n");
+                        bw.write("JORNADA DE VUELTA " + j + "  --->   " + matrizPartidos[i][1] + " VS "
+                                + matrizPartidos[i][0]+"\n");
+                        bw.close();
                     }
+                }
+            } catch (Exception e) {
+                System.out.println("error" + e);
             }
+
         }catch (Exception e){
             System.out.println("error" + e);
         }
@@ -373,6 +263,15 @@ public class CompetiClases {
                     System.out.println("Resultado del partido");
                     primerResultado = sc.nextInt();
                     segundoResultado = sc.nextInt();
+
+                    resultadosnum = new int[numeroPartidos][2];
+                    resultadosnum[i][0]=primerResultado;
+                    resultadosnum[i][1]=segundoResultado;
+
+                    /**
+                     * AQUI VA LO DE DEFINIR LO DE PARTIDOS PUNTUAJES
+                     */
+
                     if(primerResultado > segundoResultado){
                         clasi[x][3] = clasi[x][3] + 3;
                         clasi[x][0] = clasi[x][0] +1;
@@ -395,6 +294,50 @@ public class CompetiClases {
                         y = z;
                         x = 0;
                     }
+                }
+                try {
+                    RandomAccessFile rf = new RandomAccessFile(PATH +"/Temporada/Jornadas.txt", "rw");
+
+                    /**
+                     * NO ME SALEEEEEE
+                     *
+                     * Lo que he intentado es; que lea por linea que lo divida por espacios mientras contenga
+                     * "*" que iguale la posicion (que simpre es impar) a la matriz  pero nada....
+                     * LUEGO Lo meto todo en una String per nada...
+                     *
+                     *
+                     *
+                     */
+                    int o = 0;
+                    int p = 0;
+                    int d = 1;
+                    String linea;
+                    String azs = null;
+                    while ((linea = rf.readLine()) != null) {
+
+                        if (linea.contains("*")) {
+                            equipos1 = linea.split(" ");
+                            equipos1[d] = Integer.toString(resultadosnum[o][p]);
+                            if (p == 1) {
+                                o++;
+                            }
+                            p++;
+                            d = d + 2;
+                        }
+                    }
+                    for (int i = 0; i < equipos1.length ; i++) {
+                        if (azs == null){
+                            azs += equipos1;
+                        }else
+                            azs = azs + " " + equipos1;
+                    }
+                    rf.writeChars(azs);
+
+
+                    rf.close();
+
+                }catch (Exception e){
+                    System.out.println("ERROR " +e);
                 }
 
                 break;

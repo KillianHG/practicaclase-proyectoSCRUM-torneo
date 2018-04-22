@@ -43,8 +43,8 @@ public class laTornacio4 {
                     if (di==1){
                         CompetiClases.OrdenarClasificacion();
                         CompetiClases.ImprimirClasificacion();*/
-
-                        CompetiClases.CargarEquipos();
+                        CompetiClases.JornadasClasi();
+                        //CompetiClases.CargarEquipos();
                         break;
                     //}
                 case 3:
