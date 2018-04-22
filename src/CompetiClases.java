@@ -11,7 +11,7 @@ public class CompetiClases {
         Clasificacion();
     }
     //public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
-    public static String PATH = "/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";//path Killian
+    public static String PATH = "C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";//path Killian
     public static File pathEquipos = new File("/home/41011561p/IdeaProjects/LaTornacio/LaTornacio/Equipos");
     public static int  numeroEquipos;
     public static int numeroEquiposGuardado;
@@ -19,7 +19,6 @@ public class CompetiClases {
     public static int numeroPartidos;
     public static String[][] matrizPartidos;
     public static int[][] clasi;
-    public static int di = 0;
     public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
 
     //Algoritmo y automatizar vienen cogidos de la mano.
@@ -405,107 +404,18 @@ public class CompetiClases {
         }
     }
 
-/*A partir de una matriz de int(donde estan las victorias, empates, derrotas y puntos de cada equipo)
-y una array de String (donde estan los nombres de cada equipo), este metodo los ordena de mayor a menor
-segun el numero de puntos que tenga cada equipo*/
-/*para ordenar la matriz comparo puntos empezando por el final de la matriz y en caso de ser mayor que el
-valor de una posicion anterior se intercambian utilizando un auxiliar que en este caso es el valor "aux" o
-"auxstr" el cual se usa como auxiliar para strings
-el indice "i" del bucle for representa la posicion actual la cual quieres comparar, y el indice "j"
-es la posicion con la cual quieres comprara que empieza siendo =i-1 para que no se compare dos posiciones iguales*/
-
-/*Para intercambiar valores compara matriz[i][3] (la columna en la posicion 3 representa los puntos) con
-matriz[j][3], en caso de que el valor cuyo indice es "i" sea mayor al valor de indice "j" pasamos el valor
-de indice "i" a un auxiliar y el el valor de indice "i" pasa a ser igual al valor de indice "j" y como ultimo
-paso, el valor de indice "j" pasa a ser igual al valor del auxiliar y dentro del mismo if, tambien intercambiamos
-las posiciones de la matriz que representen las victorias, empates y derrota y hacemos lo mismo con los
-nombres de los equipos*/
-
-//numeroEquiposGuardado es el numero de equipos que hay en la liga, y se utiliza para establecer el tamaño del bucle for
-//clasi[][] es la matriz de 4 columnas que contienen [victorias,empates,derrotas,puntos] de cada equipo y las filas representan a cada equipo.
-
-
-    public static void Clasificacion()  {
-        //ordenar automaticamente todos los equipos
-        int ne=numeroEquiposGuardado-1;
-        for (int i=ne; i>=0; i--){
-            for (int aux=i-1; aux>=0; aux--) {
-                if (clasi[i][3]>clasi[aux][3]) {
-                    int s=clasi[i][3];
-
-                    clasi[i][3]=clasi[aux][3];
-                    clasi[aux][3]=s;
-                    s=clasi[i][2];
-                    clasi[i][2]=clasi[aux][2];
-                    clasi[aux][2]=s;
-                    s=clasi[i][1];
-                    clasi[i][1]=clasi[aux][1];
-                    clasi[aux][1]=s;
-                    s=clasi[i][0];
-                    clasi[i][0]=clasi[aux][0];
-                    clasi[aux][0]=s;
-                    String ss=equipos[i];
-                    equipos[i]=equipos[aux];
-                    equipos[aux]=ss;
-                }
-            }
-        }
-
-        //imprimir clasificacion ordenada
-        try {
-            File rutaClasi = new File(PATH + "/Temporada/Clasificacion.txt");
-
-
-            if (!rutaClasi.exists()) {
-                rutaClasi.mkdirs();
-                rutaClasi.delete();
-                rutaClasi.createNewFile();
-            }
-
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(rutaClasi));
-
-
-            System.out.print("\nCLASIFICACION DE FUTBOL\n");
-            for (int x = 1; x <= numeroEquiposGuardado; x++) {
-                int y = x - 1;
-                System.out.print("\n" + x + ". " + equipos[y] + " - " + clasi[y][0] + " victorias - " + clasi[y][1] + " empates - "
-                        + clasi[y][2] + " derrotas - " + clasi[y][3] + " puntos");
-                bw.write(equipos[y] + " " + clasi[y][0] + " " + clasi[y][1] + " "
-                        + clasi[y][2] + " " + clasi[y][3] + " \n");
-
-            }
-            bw.close();
-            di = 1;
-        }catch (Exception e){
-            System.out.println("error" + e);
-        }
-
-        /*for (Equipos equipo: aL_Equiposs) {
-            System.out.println(equipo.getNombre()+equipo.getVictorias()+equipo.getEmpates()+equipo.getDerrotas()+equipo.getPuntos());
-        }*/
 
 
 
-
-
-    }
-    /*public static void FicheroToObjeto() {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(PATH + "/Temporada/Clasificacion.txt"));
-
-            String linea;
-            while ((linea = br.readLine())!=null) {
-                String [] eq_puntaje = linea.split(" ");
-                aL_Equiposs.add(new Equipos(eq_puntaje[0],Integer.parseInt(eq_puntaje[1]),Integer.parseInt(eq_puntaje[2]),Integer.parseInt(eq_puntaje[3]),Integer.parseInt(eq_puntaje[4])));
-            }
-            OrdenarEquipos();
-            br.close();
-        } catch (Exception e) {
-
-        }
-    }*/
-
+    /**
+     * Carga todos los equipos dentro del directorio del cual esten y despues los ordena segun los puntosç
+     *
+     * Lo que hace es crear objetos por cada fichero que haya en la carpeta que contenga los equipos
+     * y asignar todos los atributos del equipo tal cual se quedaron la ultima vez que se actualizaron
+     * Para ello el fichero se crea con una primera linea de 4 numeros separados por espacios que
+     * representan "victorias" "empates" "derrotas" "puntos", seguido de lineas que representan
+     * todos y cada uno de los jugadores.
+     */
     public static void CargarEquipos() {
         File equipos = new File(PATH+"/Equipos");
         int index = 0;
@@ -540,66 +450,29 @@ nombres de los equipos*/
                 System.out.println("No se han podido cargar el equipo correctamente");
             }
         }
-
-        OrdenarEquipos();
-
-
-    }
-
-    public static void OrdenarEquipos() {
-        Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
-        System.out.println("Mostrem els elements ORDENATS:");
+        System.out.println("Mostramos los equipos tal cual se han introducido:");
         for (int i=0; i<aL_Equipos.size(); i++){
             System.out.println(aL_Equipos.get(i) + " ");
         }
+        Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
+
+        System.out.println("Mostramos los equipos ordenados:");
+        for (int i=0; i<aL_Equipos.size(); i++){
+            System.out.println(aL_Equipos.get(i) + " ");
+        }
+
     }
 
-    /*public static void ObjetoToFichero() {
-        try {
-            String clasificacion = "";
-            for (Equipos equipo :aL_Equiposs) {
-                clasificacion = clasificacion+equipo.getNombre()+" "+equipo.getVictorias()+" "+equipo.getEmpates()+" "+equipo.getDerrotas()+" "+equipo.getPuntos()+"\n";
-            }
-            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH + "/Temporada/Clasificacion.txt"));
-            bw.write(clasificacion);
-            bw.close();
-        } catch (Exception e) {
-
-        }
-    }*/
-
-    public static void OrdenarClasificacion() {
-        int ne=numeroEquiposGuardado-1;
-        for (int i=ne; i>=0; i--){
-            for (int aux=i-1; aux>=0; aux--) {
-                if (clasi[i][3]>clasi[aux][3]) {
-                    int s=clasi[i][3];
-
-                    clasi[i][3]=clasi[aux][3];
-                    clasi[aux][3]=s;
-                    s=clasi[i][2];
-                    clasi[i][2]=clasi[aux][2];
-                    clasi[aux][2]=s;
-                    s=clasi[i][1];
-                    clasi[i][1]=clasi[aux][1];
-                    clasi[aux][1]=s;
-                    s=clasi[i][0];
-                    clasi[i][0]=clasi[aux][0];
-                    clasi[aux][0]=s;
-                    String ss=equipos[i];
-                    equipos[i]=equipos[aux];
-                    equipos[aux]=ss;
-                }
-            }
-        }
-    }
-   public static void ImprimirClasificacion(){
+    /**
+     * Sirve para imprimira la clasificacion.
+     */
+    public static void ImprimirClasificacion(){
         System.out.print("\nCLASIFICACION DE FUTBOL\n");
-        for (int x=1;x<=numeroEquiposGuardado;x++) {
-            int y=x-1;
-            System.out.print("\n"+x+". "+equipos[y]+" - "+clasi[y][0]+" victorias - "+clasi[y][1]+" empates - "+clasi[y][2]+" derrotas - "+clasi[y][3]+" puntos");
+        for (int x=1;x<=aL_Equipos.size();x++) {
+            int i=x-1;
+            System.out.print("\n"+x+". "+aL_Equipos.get(i).getNomEquip()+" - "+aL_Equipos.get(i).getPuntos()+" victorias - "+aL_Equipos.get(i).getEmpates()+" empates - "+aL_Equipos.get(i).getDerrotas()+" derrotas - "+aL_Equipos.get(i).getPuntos()+" puntos");
         }
-        di=1;
+       System.out.println();
     }
 
 

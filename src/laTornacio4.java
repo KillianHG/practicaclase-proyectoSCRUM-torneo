@@ -24,12 +24,14 @@ public class laTornacio4 {
         while (cuerpo==0) {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("                 1: Nuevos equipos");
-            if (di==0) System.out.println("                 2: Crear temporada");
-            else System.out.println("                3: Ver clasificacion");
+            System.out.println("                 2: Crear temporada");
+            System.out.println("                3: Ver clasificacion");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
+
+                    EquiposClases.EquiposClases();
 
                     break;
                 case 2:
@@ -45,7 +47,9 @@ public class laTornacio4 {
                         CompetiClases.CargarEquipos();
                         break;
                     //}
-
+                case 3:
+                    CompetiClases.ImprimirClasificacion();
+                    break;
 
                 default:
                     System.out.println("ERROR");

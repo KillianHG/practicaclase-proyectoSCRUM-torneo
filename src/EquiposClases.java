@@ -9,7 +9,7 @@ public class EquiposClases {
 
     public static  Scanner sc = new Scanner(System.in);
 
-    public static String ruta ="/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";//path Killian
+    public static String ruta ="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";//path Killian
 
     public static void main(String[] args) {
 
