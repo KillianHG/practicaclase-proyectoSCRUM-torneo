@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class CompetiClases {
     //public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
     public static String PATH = "C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";//path Killian
-    public static File pathEquipos = new File("C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio\\Equipos");
     public static int  numeroEquipos;
     public static int numeroEquiposGuardado;
     public static String[] equipos;
@@ -212,8 +211,12 @@ public class CompetiClases {
                 if (partido[0].equals(equipo.getNomEquip())) {
                     equipo.setVictorias(equipo.getVictorias()+1);
                     equipo.setPuntos(equipo.getPuntos()+3);
+
+                    ActualizarEquipos(equipo);
                 } else if (partido[2].equals(equipo.getNomEquip())) {
                     equipo.setDerrotas(equipo.getDerrotas()+1);
+
+                    ActualizarEquipos(equipo);
                 }
             }
         } else if (primerResultado < segundoResultado) {
@@ -221,8 +224,12 @@ public class CompetiClases {
                 if (partido[2].equals(equipo.getNomEquip())) {
                     equipo.setVictorias(equipo.getVictorias()+1);
                     equipo.setPuntos(equipo.getPuntos()+3);
+
+                    ActualizarEquipos(equipo);
                 } else if (partido[0].equals(equipo.getNomEquip())) {
                     equipo.setDerrotas(equipo.getDerrotas()+1);
+
+                    ActualizarEquipos(equipo);
                 }
             }
         } else {
@@ -230,9 +237,13 @@ public class CompetiClases {
                 if (partido[0].equals(equipo.getNomEquip())) {
                     equipo.setEmpates(equipo.getEmpates()+1);
                     equipo.setPuntos(equipo.getPuntos()+1);
+
+                    ActualizarEquipos(equipo);
                 } else if (partido[2].equals(equipo.getNomEquip())) {
                     equipo.setEmpates(equipo.getEmpates()+1);
                     equipo.setPuntos(equipo.getPuntos()+1);
+
+                    ActualizarEquipos(equipo);
                 }
             }
         }
@@ -330,8 +341,20 @@ public class CompetiClases {
         }*/
     }
 
+    public static void ActualizarEquipos(ObjEquipos equipo) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Equipos\\" + equipo.getNomEquip() + ".txt"));
+            String datosEquipo = "";
+            datosEquipo+=equipo.getVictorias() + " " + equipo.getEmpates() + " " + equipo.getDerrotas() + " " +equipo.getPuntos() + "\n";
+            for (Jugadores jugador: equipo.getJugadores()) {
+                datosEquipo += jugador.getNombre() + " " + jugador.getEdad() + " " + jugador.getGenero() + "\n";
+            }
+            bw.write(datosEquipo);
+            bw.close();
+        } catch (Exception e) {
 
-
+        }
+    }
 
     /**
      * Carga todos los equipos dentro del directorio del cual esten y despues los ordena segun los puntosç

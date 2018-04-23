@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.*;
 
 public class laTornacio4 {
@@ -39,8 +40,12 @@ public class laTornacio4 {
                     EquiposClases.EquiposClases();
                     break;
                 case 3:
-                    //poner error en caso de que ya este creada
+                    File jornadas = new File(CompetiClases.PATH+"\\Temporada\\Jornadas.txt");
+                    if (jornadas.exists()) {
+                        System.out.println("Error, ya hay una temporada activa en este momento");
+                    } else {
                     CompetiClases.CrearTemporada();
+                    }
                     break;
                 case 4:
                     CompetiClases.ImprimirClasificacion();
