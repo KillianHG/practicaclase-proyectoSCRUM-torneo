@@ -23,36 +23,33 @@ public class laTornacio4 {
         //Hacer una selección entre - Nuevo equipo - Clasificación - Partidos de Jornada
         while (cuerpo==0) {
             System.out.println("---------------------------------------------------------------------------");
-            System.out.println("                 1: Nuevos equipos");
-            System.out.println("                 2: Crear temporada");
-            System.out.println("                3: Ver clasificacion");
-            System.out.println("                 4: Cargar equipos");
+            System.out.println("                 1: Cargar equipos");
+            System.out.println("                 2: Crear equipos");
+            System.out.println("                 3: Crear temporada ");
+            System.out.println("                4: Ver clasificacion");
+            System.out.println("             5: Jugar siguiente jornada");
+            System.out.println("                       6: Salir");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
-
-                    EquiposClases.EquiposClases();
-
+                    CompetiClases.CargarEquipos();
                     break;
                 case 2:
-                    /*if (di==0) {
-                        CompetiClases.JornadasClasi();
-                        break;
-                    }
-
-                    if (di==1){
-                        CompetiClases.OrdenarClasificacion();
-                        CompetiClases.ImprimirClasificacion();*/
-                        CompetiClases.JornadasClasi();
-                        //CompetiClases.CargarEquipos();
-                        break;
-                    //}
+                    EquiposClases.EquiposClases();
+                    break;
                 case 3:
-                    CompetiClases.ImprimirClasificacion();
+                    //poner error en caso de que ya este creada
+                    CompetiClases.CrearTemporada();
                     break;
                 case 4:
-                    CompetiClases.CargarEquipos();
+                    CompetiClases.ImprimirClasificacion();
+                    break;
+                case 5:
+                    CompetiClases.Partidos();
+                    break;
+                case 6:
+                    again=2;
                     break;
                 default:
                     System.out.println("ERROR");
