@@ -14,6 +14,7 @@ public class CompetiClases {
     public static String [] equipos1;
     public static int[][] clasi;
     public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
+    public static int temporadaAcabada = 0;
 
     /**
      * Crea una nueva temporada, a partir de los ficheros en la carpeta equipos.
@@ -82,7 +83,7 @@ public class CompetiClases {
                     System.out.println("JORNADA  " + j+ "  --->   " + matrizPartidos[i][0] + " VS "
                             + matrizPartidos[i][1]);
 
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Temporada\\Jornadas.txt", true));
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt", true));
                     bw.write(matrizPartidos[i][0] + " * " + matrizPartidos[i][1] +" *\n");
                     bw.close();
                 }
@@ -126,7 +127,7 @@ public class CompetiClases {
         int jornadasMax = 0;
         int jornadasM = ((aL_Equipos.size() / 2)+(aL_Equipos.size()) % 2) * (aL_Equipos.size() - 1);
         try {
-            BufferedReader br = new BufferedReader(new FileReader(PATH + "\\Temporada\\Jornadas.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(PATH + "/Temporada/Jornadas.txt"));
             String linea;
             while ((linea=br.readLine())!=null) {
                 jornadasMax++;
@@ -142,18 +143,16 @@ public class CompetiClases {
         String[] partido = new String[4];
                 clasi= new int[numeroEquiposGuardado][4];
         try {
-            BufferedReader br = new BufferedReader(new FileReader(PATH+"\\Temporada\\Jornadas.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(PATH+"/Temporada/Jornadas.txt"));
 
 
             int salir = 0;
-            String linea;
+            String linea = "";
             String textoJornadas = "";
             int jor = 1;
-            while ((linea = br.readLine()) != null && salir == 0) {
+            for (int i=0;i<jornadasMax && salir == 0;i++) {
+                linea = br.readLine();
                 if (linea.contains("*")) {
-                    if (jor == jornadasM && jornadasM*2 == jornadasMax) {
-                        System.out.println("COMIENZAN LAS JORNADAS DE VUELTA");
-                    }
                     partido = linea.split(" ");
                     System.out.println("JORNADA " + jor + "  --->   " + partido[0] + " VS " + partido[2]);
                     System.out.println("-----");
@@ -171,17 +170,21 @@ public class CompetiClases {
                 jor++;
                 if (jor > jornadasMax) {
                     System.out.println("La temporada ha finalizado");
+                    temporadaAcabada = 1;
                 }
-                if (jor > jornadasM && jornadasM*2==jornadasMax) {
+                if (jor == jornadasM && jornadasM*2==jornadasMax) {
                     System.out.println("Han finalizado las jornadas de ida");
                 }
             }
-            while ((linea = br.readLine()) != null && salir == 1) {
-                textoJornadas += linea + "\n";
+            for (int i = 0; i < jornadasMax && salir == 1; i++) {
+                linea = br.readLine();
+                if (linea!=null) {
+                    textoJornadas += linea + "\n";
+                }
             }
 
             br.close();
-            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Temporada\\Jornadas.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Temporada/Jornadas.txt"));
             bw.write(textoJornadas);
             bw.close();
         }
@@ -243,7 +246,7 @@ public class CompetiClases {
      */
     public static void ActualizarEquipos(ObjEquipos equipo) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Equipos\\" + equipo.getNomEquip() + ".txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"/Equipos/" + equipo.getNomEquip() + ".txt"));
             String datosEquipo = "";
             datosEquipo+=equipo.getVictorias() + " " + equipo.getEmpates() + " " + equipo.getDerrotas() + " " +equipo.getPuntos() + "\n";
             for (Jugadores jugador: equipo.getJugadores()) {

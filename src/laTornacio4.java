@@ -18,16 +18,16 @@ public class laTornacio4 {
         cuerpo.Cuerpo();
     }
     public void Cuerpo() {
-        CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";
-        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestVacio";
-        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestMitadTemporada";
-        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestFinalTemporada";
+        //CompetiClases.PATH="/home/41011561p/IdeaProjects/LaTornacio/LaTornacio";
+        //CompetiClases.PATH="/home/41011561p/IdeaProjects/LaTornacio/TestVacio";
+        CompetiClases.PATH="/home/41011561p/IdeaProjects/LaTornacio/TestMitadTemporada";
+        //CompetiClases.PATH="/home/41011561p/IdeaProjects/LaTornacio/TestFinalTemporada";
 
         int valor;
         int again;
         int cuerpo = 0;
-        File jornadas = new File(CompetiClases.PATH+"\\Temporada\\Jornadas.txt");
-        File equipos = new File(CompetiClases.PATH+"\\Equipos");
+        File jornadas = new File(CompetiClases.PATH+"/Temporada/Jornadas.txt");
+        File equipos = new File(CompetiClases.PATH+"/Equipos");
 
         if (equipos.listFiles().length!=0) {
         CompetiClases.CargarEquipos();
@@ -49,13 +49,20 @@ public class laTornacio4 {
             } else {
                 System.out.println("    3: Ver clasificacion (No hay una temporada activa)");
             }
-            System.out.println("             4: Jugar siguiente jornada");
+            if (jornadas.exists()) {
+                System.out.println("              4: Jugar siguiente jornada");
+            } else if (CompetiClases.temporadaAcabada==1) {
+                System.out.println("  4: Jugar siguiente jornada (La temporada ya ha acabado)");
+            } else {
+                System.out.println("  4: Jugar siguiente jornada (No hay una temporada activa)");
+            }
             System.out.println("                       5: Salir");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
                     EquiposClases.EquiposClases();
+                    CompetiClases.CargarEquipos();
                     break;
                 case 2:
                     if (jornadas.exists()) {
@@ -74,7 +81,14 @@ public class laTornacio4 {
                     }
                     break;
                 case 4:
-                    CompetiClases.JugarJornada();
+                    if (jornadas.exists()) {
+                        CompetiClases.JugarJornada();
+
+                    }  else if (CompetiClases.temporadaAcabada==1) {
+                        System.out.println("Error, la temporada ya ha finalizado");
+                    } else {
+                        System.out.println("Error, no hay una temporada activa en este momento");
+                    }
                     break;
                 case 5:
                     again=2;
