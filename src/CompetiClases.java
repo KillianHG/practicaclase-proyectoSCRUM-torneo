@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 public class CompetiClases {
-    //public static String PATH = "/home/26633902v/IdeaProjects/LaTornacio-master-28f1de9cb809eb72f764bdff9f793e129e8b9b7e/src/LaTornacio/Partidos/";
-    public static String PATH = "C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";//path Killian
+
+    public static String PATH;
     public static int  numeroEquipos;
     public static int numeroEquiposGuardado;
     public static String[] equipos;
@@ -15,12 +15,9 @@ public class CompetiClases {
     public static int[][] clasi;
     public static ArrayList<ObjEquipos> aL_Equipos = new ArrayList<ObjEquipos>();
 
-    //Algoritmo y automatizar vienen cogidos de la mano.
-    //Para generar las jornadas debemos demostrar la formula anterior, generando cada uno de los casos posibles.
-    //Para eso, usamos el siguiente algoritmo:
-
-
-
+    /**
+     * Crea una nueva temporada, a partir de los ficheros en la carpeta equipos.
+     */
     public static void CrearTemporada() {
 
         try {
@@ -32,20 +29,8 @@ public class CompetiClases {
             directorio.createNewFile();
             }
 
-            //System.out.println("Introduce el numero de equipos");
             numeroEquipos = aL_Equipos.size();
             numeroEquiposGuardado = numeroEquipos;
-            //Depuradora
-            //String a = sc.nextLine();
-
-
-
-            //Nombramos los Equipos
-            /*System.out.println("Introduce el nombre de los equipos");
-            System.out.println("");
-            System.out.println("");*/
-
-
 
             //Generador de total de partidos sin repetir (vuelta x 2)
             numeroPartidos = ((aL_Equipos.size() / 2)+(numeroEquipos) % 2) * (numeroEquipos - 1);
@@ -129,43 +114,33 @@ public class CompetiClases {
 
     }
 
-    public static void Partidos() {
+    /**
+     * Juega la siguiente jornada de la temporada.
+     * Entra en el fichero y empieza a recorrer linea por linea hasta encontrar una linea
+     * que contenga "*" da el nombre de los equipos y pregunta el resultado, busca en los equipos
+     * cual tiene los mismos nombres y actualiza sus puntuaciones.
+     */
+    public static void JugarJornada() {
         Scanner sc = new Scanner(System.in);
 
-        //System.out.println("Quieres Introducir los resultados de los partidos?");
-        String resultados = "asd";
-        int validarOpcion = 0;
+        int jornadasMax = 0;
+        int jornadasM = ((aL_Equipos.size() / 2)+(aL_Equipos.size()) % 2) * (aL_Equipos.size() - 1);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(PATH + "\\Temporada\\Jornadas.txt"));
+            String linea;
+            while ((linea=br.readLine())!=null) {
+                jornadasMax++;
+            }
+            br.close();
+        } catch (Exception e) {
+
+        }
+
+        //System.out.println("Quieres Introducir los resultados de la siguiente jornada jornada?");
         int primerResultado = 0;
         int segundoResultado = 0;
         String[] partido = new String[4];
                 clasi= new int[numeroEquiposGuardado][4];
-        /*int[] puntosEquipo = new int[numeroEquiposGuardado];
-        int[] victorias = new int[numeroEquiposGuardado];
-        int[] derrotas = new int[numeroEquiposGuardado];
-        int[] empates = new int[numeroEquiposGuardado];*/
-
-
-        //Victorias [][0], Empates[][1], Derrotas [][2], Puntos [][3]
-        /*for (int i = 0; i <numeroEquiposGuardado ; i++) {
-            clasi[i][3] = 0;
-        }*/
-        int x = 0;
-        int y = 1;
-        int z = 1;
-        /*while(validarOpcion == 0){
-            resultados =sc.nextLine();
-            if(resultados.toLowerCase().equals("si")){
-                validarOpcion++;
-            }
-            else if(resultados.toLowerCase().equals("no")){
-                validarOpcion++;
-            }else{
-                System.out.println("No te hemos entendido.");
-                System.out.println("¿Quieres introducir los resultado de los partidos?   Si / No");
-
-            }
-        }*/
-
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH+"\\Temporada\\Jornadas.txt"));
 
@@ -176,6 +151,9 @@ public class CompetiClases {
             int jor = 1;
             while ((linea = br.readLine()) != null && salir == 0) {
                 if (linea.contains("*")) {
+                    if (jor == jornadasM && jornadasM*2 == jornadasMax) {
+                        System.out.println("COMIENZAN LAS JORNADAS DE VUELTA");
+                    }
                     partido = linea.split(" ");
                     System.out.println("JORNADA " + jor + "  --->   " + partido[0] + " VS " + partido[2]);
                     System.out.println("-----");
@@ -191,6 +169,12 @@ public class CompetiClases {
                     textoJornadas += linea + "\n";
 
                 jor++;
+                if (jor > jornadasMax) {
+                    System.out.println("La temporada ha finalizado");
+                }
+                if (jor > jornadasM && jornadasM*2==jornadasMax) {
+                    System.out.println("Han finalizado las jornadas de ida");
+                }
             }
             while ((linea = br.readLine()) != null && salir == 1) {
                 textoJornadas += linea + "\n";
@@ -205,7 +189,7 @@ public class CompetiClases {
 
         }
 
-        //Se suman los puntos a los objetos
+        //Se suman los puntos a los objetos y se actualizan los ficheros de los equipos
         if (primerResultado > segundoResultado) {
             for (ObjEquipos equipo :aL_Equipos) {
                 if (partido[0].equals(equipo.getNomEquip())) {
@@ -248,99 +232,15 @@ public class CompetiClases {
             }
         }
 
+        //al acabar la jornada, se ordena la clasificacion y se muestra.
         Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
         ImprimirClasificacion();
-
-        /*switch (resultados.toLowerCase()){
-            case "si":
-                for (int i = 0; i <numeroPartidos ; i++) {
-                    System.out.println("-----");
-                    System.out.println("JORNADA  " + jornada + "  --->   " + matrizPartidos[i][0] + " VS "
-                            + matrizPartidos[i][1] + "    " + dmaj[0] + " / " + dmaj[1] + " / " + dmaj[2]);
-                    dmaj[0] = dmaj[0] + (int) (Math.random() * 3) + 1;
-                    jornada++;
-                    System.out.println("Resultado del partido");
-                    primerResultado = sc.nextInt();
-                    segundoResultado = sc.nextInt();
-
-                    resultadosnum = new int[numeroPartidos][2];
-                    resultadosnum[i][0]=primerResultado;
-                    resultadosnum[i][1]=segundoResultado;
-
-
-                    //AQUI VA LO DE DEFINIR LO DE PARTIDOS PUNTUAJES
-
-
-                    if(primerResultado > segundoResultado){
-                        clasi[x][3] = clasi[x][3] + 3;
-                        clasi[x][0] = clasi[x][0] +1;
-                        clasi[y][2] = clasi[y][2] +1;
-                    }
-                    else if(segundoResultado > primerResultado){
-                        clasi[y][3] = clasi[y][3]+3;
-                        clasi[y][0] = clasi[y][0]+1;
-                        clasi[x][2] = clasi[x][2] +1;
-                    }else{
-                        clasi[x][3] = clasi[x][3] + 1;
-                        clasi[y][3] = clasi[y][3] + 1;
-                        clasi[x][1] = clasi[x][1] +1;
-                        clasi[y][1] = clasi[y][1] +1;
-                    }
-                    x++;
-                    y++;
-                    if(y == numeroEquipos){
-                        z++;
-                        y = z;
-                        x = 0;
-                    }
-                }
-                try {
-                    RandomAccessFile rf = new RandomAccessFile(PATH +"/Temporada/Jornadas.txt", "rw");
-
-                    //
-                    // NO ME SALEEEEEE
-                    // Lo que he intentado es; que lea por linea que lo divida por espacios mientras contenga
-                    // "*" que iguale la posicion (que simpre es impar) a la matriz  pero nada....
-                    //LUEGO Lo meto todo en una String per nada...
-                    int o = 0;
-                    int p = 0;
-                    int d = 1;
-                    String linea;
-                    String azs = null;
-                    while ((linea = rf.readLine()) != null) {
-
-                        if (linea.contains("*")) {
-                            equipos1 = linea.split(" ");
-                            equipos1[d] = Integer.toString(resultadosnum[o][p]);
-                            if (p == 1) {
-                                o++;
-                            }
-                            p++;
-                            d = d + 2;
-                        }
-                    }
-                    for (int i = 0; i < equipos1.length ; i++) {
-                        if (azs == null){
-                            azs += equipos1;
-                        }else
-                            azs = azs + " " + equipos1;
-                    }
-                    rf.writeChars(azs);
-
-
-                    rf.close();
-
-                }catch (Exception e){
-                    System.out.println("ERROR " +e);
-                }
-
-                break;
-            case "no":
-                System.out.println("ADEU :D");
-                break;
-        }*/
     }
 
+    /**
+     * Actualiza los ficheros de l equipo
+     * @param equipo el equipo del cual queremos actualizar su fichero
+     */
     public static void ActualizarEquipos(ObjEquipos equipo) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(PATH+"\\Equipos\\" + equipo.getNomEquip() + ".txt"));
@@ -393,23 +293,11 @@ public class CompetiClases {
                 aL_Equipos.get(index).setPuntos(Integer.parseInt(eq_puntaje[3]));
 
                 index++;
-
-                System.out.println("Equipo cargado correctamente");
             } catch (Exception e) {
                 System.out.println("No se han podido cargar el equipo correctamente");
             }
         }
-        System.out.println("Mostramos los equipos tal cual se han introducido:");
-        for (int i=0; i<aL_Equipos.size(); i++){
-            System.out.println(aL_Equipos.get(i) + " ");
-        }
         Collections.sort(aL_Equipos, ObjEquipos.compararPuntos);
-
-        System.out.println("Mostramos los equipos ordenados:");
-        for (int i=0; i<aL_Equipos.size(); i++){
-            System.out.println(aL_Equipos.get(i) + " ");
-        }
-
     }
 
     /**

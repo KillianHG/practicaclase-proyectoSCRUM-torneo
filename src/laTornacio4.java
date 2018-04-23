@@ -12,48 +12,71 @@ public class laTornacio4 {
     String[][]matrizPartidos;
     int di=0;
 
+
     public static void main(String[] args) {
         laTornacio4 cuerpo = new laTornacio4();
         cuerpo.Cuerpo();
     }
     public void Cuerpo() {
+        CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\LaTornacio";
+        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestVacio";
+        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestMitadTemporada";
+        //CompetiClases.PATH="C:\\Users\\Usuario\\IdeaProjects\\LaTornacio\\TestFinalTemporada";
+
         int valor;
         int again;
         int cuerpo = 0;
+        File jornadas = new File(CompetiClases.PATH+"\\Temporada\\Jornadas.txt");
+        File equipos = new File(CompetiClases.PATH+"\\Equipos");
+
+        if (equipos.listFiles().length!=0) {
+        CompetiClases.CargarEquipos();
+        }
 
         //Hacer una selección entre - Nuevo equipo - Clasificación - Partidos de Jornada
         while (cuerpo==0) {
             System.out.println("---------------------------------------------------------------------------");
-            System.out.println("                 1: Cargar equipos");
-            System.out.println("                 2: Crear equipos");
-            System.out.println("                 3: Crear temporada ");
-            System.out.println("                4: Ver clasificacion");
-            System.out.println("             5: Jugar siguiente jornada");
-            System.out.println("                       6: Salir");
+            System.out.println("                 1: Crear equipos");
+            if (jornadas.exists()) {
+                System.out.println("    2: Crear temporada (Ya hay una temporada activa) ");
+            } else if (CompetiClases.aL_Equipos.size()<4) {
+                System.out.println("    2: Crear temporada (No hay equipos suficientes) ");
+            } else {
+                System.out.println("                 2: Crear temporada ");
+            }
+            if (jornadas.exists()) {
+                System.out.println("                3: Ver clasificacion");
+            } else {
+                System.out.println("    3: Ver clasificacion (No hay una temporada activa)");
+            }
+            System.out.println("             4: Jugar siguiente jornada");
+            System.out.println("                       5: Salir");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
                 case 1:
-                    CompetiClases.CargarEquipos();
-                    break;
-                case 2:
                     EquiposClases.EquiposClases();
                     break;
-                case 3:
-                    File jornadas = new File(CompetiClases.PATH+"\\Temporada\\Jornadas.txt");
+                case 2:
                     if (jornadas.exists()) {
                         System.out.println("Error, ya hay una temporada activa en este momento");
-                    } else {
+                    } else if (CompetiClases.aL_Equipos.size()<4) {
+                        System.out.println("Error, no hay equipos suficientes para crear una temporada");
+                } else {
                     CompetiClases.CrearTemporada();
                     }
                     break;
+                case 3:
+                    if (jornadas.exists()) {
+                        CompetiClases.ImprimirClasificacion();
+                    } else {
+                        System.out.println("Error, no hay una temporada activa en este momento");
+                    }
+                    break;
                 case 4:
-                    CompetiClases.ImprimirClasificacion();
+                    CompetiClases.JugarJornada();
                     break;
                 case 5:
-                    CompetiClases.Partidos();
-                    break;
-                case 6:
                     again=2;
                     break;
                 default:
