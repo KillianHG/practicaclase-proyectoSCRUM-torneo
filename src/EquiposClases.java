@@ -117,6 +117,52 @@ public class EquiposClases {
                                         System.out.println("Genero erroneo , vuelve a introducir");
                                     }
                                 }
+
+                                System.out.println("En que posicion juega?");
+                                System.out.println("1.Portero");
+                                System.out.println("2.Defensa");
+                                System.out.println("3.Centro Campista");
+                                System.out.println("4.Delantero");
+                                int posicio = sc.nextInt();
+                                double velocitat;
+                                int gols;
+                                switch (posicio){
+
+                                    case 1:
+
+                                        break;
+
+                                    case 2:
+
+                                        break;
+
+                                    case 3:
+
+                                        System.out.println("Introduce la media de velocidad a la que corre el jugador");
+                                        velocitat = sc.nextDouble();
+                                        System.out.println("Cuantos goles ha marcado?");
+                                        gols = sc.nextInt();
+
+                                        jugadores2.add(new Medio(nombrejugador,edad,genero,velocitat,gols));
+
+
+                                        break;
+
+                                    case 4:
+
+                                        System.out.println("Introduce la media de velocidad a la que corre el jugador");
+                                        velocitat = sc.nextDouble();
+                                        System.out.println("Cuantos goles ha marcado?");
+                                        gols = sc.nextInt();
+                                        System.out.println("Cual es su pierna predilecta?");
+                                        String piernabunena = sc.next();
+
+                                        jugadores2.add(new Delantero(nombrejugador,edad,genero,velocitat,gols,piernabunena));
+
+                                        break;
+
+                                }
+
                                 try{
                                     BufferedWriter bw = new BufferedWriter(new FileWriter(temp, true));
                                     bw.write(nombrejugador + " " + edad + " " + genero + "\n");
@@ -125,7 +171,6 @@ public class EquiposClases {
                                 catch (Exception e) {
                                 System.out.println("Error");
                                 }
-                                jugadores2.add(new Jugadores(nombrejugador,edad,genero));
 
                                 jugadoresactuales = jugadoresactuales+1;
 
