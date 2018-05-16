@@ -130,9 +130,25 @@ public class EquiposClases {
 
                                     case 1:
 
+                                        System.out.println("Introduce el numero de paradas");
+                                        int paradas = sc.nextInt();
+                                        System.out.println("Introduce el nombre de los guantes que usa");
+                                        String guante = sc.nextLine();
+
+                                        jugadores2.add(new Portero(nombrejugador,edad,genero,paradas,guante));
+
+
                                         break;
 
                                     case 2:
+
+                                        System.out.println("Introduce la media de velocidad a la que corre el jugador");
+                                        velocitat = sc.nextDouble();
+                                        System.out.println("Introduce el numero de faltas");
+                                        int faltas = sc.nextInt();
+
+                                        jugadores2.add(new Defensa(nombrejugador,edad,genero,velocitat,faltas));
+
 
                                         break;
 
