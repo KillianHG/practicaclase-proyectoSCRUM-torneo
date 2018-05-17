@@ -315,5 +315,76 @@ public class CompetiClases {
        System.out.println();
     }
 
+    public static void CrearTorneo() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList <ObjEquipos> aL_Playoff = new ArrayList<>();
+        for (ObjEquipos e:aL_Equipos) {
+
+           aL_Playoff.add(e);
+
+        }
+        int rondas=0;
+        int index = aL_Playoff.size();
+        while (index!=1) {
+            index = index / 2;
+            rondas++;
+        }
+
+        for (int i = 0; i < aL_Playoff.size()-1; i++) {
+            System.out.println(aL_Playoff.get(i).getNomEquip());
+            i++;
+            System.out.println(" VS ");
+            System.out.println(aL_Playoff.get(i).getNomEquip());
+            System.out.println("---------------------");
+        }
+
+        int primerResultado = 0;
+        int segundoResultado = 0;
+        while (rondas != 0) {
+            for (int i = 0; i < aL_Playoff.size()-1; i++) {
+                System.out.println(aL_Playoff.get(i).getNomEquip());
+                i++;
+                System.out.println(" VS ");
+                System.out.println(aL_Playoff.get(i).getNomEquip());
+                boolean c = false;
+                System.out.println("··································");
+                while (!c) {
+                System.out.println("Introduce el resultado del partido:");
+                primerResultado = sc.nextInt();
+                segundoResultado = sc.nextInt();
+
+
+                 if (primerResultado > segundoResultado) {
+                     aL_Playoff.remove(i);
+                     c=true;
+                     i--;
+                     System.out.println("··································");
+                 } else if (primerResultado < segundoResultado) {
+                     i--;
+                     aL_Playoff.remove(i);
+                     c=true;
+                     System.out.println("··································");
+                 } else {
+                     System.out.println("----------- Tiempo Extra ---------");
+                 }
+
+                }
+            }
+            rondas--;
+            if (rondas!=0) {
+                System.out.println("####################");
+                System.out.println("Ronda finalizada");
+                System.out.println("####################");
+                System.out.println("··································");
+
+            } else {
+                System.out.println("####################");
+                System.out.println("Torneo finalizado");
+                System.out.println("El equipo campeon es: " +aL_Playoff.get(0).getNomEquip());
+                System.out.println("####################");
+            }
+
+        }
+    }
 
 }

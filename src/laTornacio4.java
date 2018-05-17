@@ -56,7 +56,8 @@ public class laTornacio4 {
             } else {
                 System.out.println("  4: Jugar siguiente jornada (No hay una temporada activa)");
             }
-            System.out.println("                       5: Salir");
+            System.out.println("               5: Crear y jugar playoff");
+            System.out.println("                       6: Salir");
             System.out.println("---------------------------------------------------------------------------");
             valor =sc.nextInt();
             switch (valor) {
@@ -91,6 +92,15 @@ public class laTornacio4 {
                     }
                     break;
                 case 5:
+                    double f = Math.sqrt(CompetiClases.aL_Equipos.size());
+                    int i = (int)f;
+                    if (f == (double)i) {
+                        CompetiClases.CrearTorneo();
+                    } else {
+                        System.out.println("Erro, no se puede crear un torneo con este numero de equipos");
+                    }
+                    break;
+                case 6:
                     again=2;
                     break;
                 default:
